@@ -1,5 +1,6 @@
 <?php
-
+use App\InventoriModel;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -11,20 +12,37 @@
 |
 */
 
+
+
+
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 $router->get('key', function(){
     return str_random(32);
 });
-$router->get('/transaki', ['uses' => 'transaksiController@getall']);
-$router->get('/transaksi/{id}', ['uses' => 'transaksiController@getbyid']);
-$router->post('/transaksi', ['uses' => 'transaksiController@save']);
-$router->put('/transaksi/{id}', ['uses' => 'transaksiController@update']);
-$router->delete('/transaksi/{id}', ['uses' => 'transaksiController@delete']);
+$router->get('/transaksi', ['uses' => 'TransaksiController@getall']);
+$router->get('/transaksi/{id}', ['uses' => 'TransaksiController@getbyid']);
+$router->post('/transaksi', ['uses' => 'TransaksiController@save']);
+$router->put('/transaksi/{id}', ['uses' => 'TransaksiController@update']);
+$router->delete('transaksi/{id}', ['uses' => 'TransaksiController@delete']);
 
-$router->get('/inventori', ['uses' => 'inventoriController@getall']);
-$router->get('/inventori/{id}', ['uses' => 'inventoriController@getbyid']);
-$router->post('/inventori', ['uses' => 'inventoriController@save']);
-$router->put('/inventori/{id}', ['uses' => 'inventoriController@update']);
-$router->delete('/inventori/{id}', ['uses' => 'inventoriController@delete']);
+$router->get('/inventori', ['uses' => 'InventoriController@getall']);
+$router->get('/inventori/{id}', ['uses' => 'InventoriController@getbyid']);
+$router->post('/inventori', ['uses' => 'InventoriController@save']);
+$router->put('/inventori/{id}', ['uses' => 'InventoriController@update']);
+$router->delete('/inventori/{id}', ['uses' => 'InventoriController@delete']);
+// Route::get('inventori/{id}', 'InventoryController@show');
+//     Route::get('inventori', 'InventoryController@index');
+//     Route::post('inventori', 'InventoryController@store');
+//     Route::put('inventori/{id}', 'InventoryController@update');
+//     Route::delete('inventori/{id}', 'InventoryController@delete');
+
+$router->get('foo', function () {
+    return 'Hello World';
+});
+
+$router->get('test', function(){
+    $inventori = InventoriModel::all();
+    return $inventori;
+});

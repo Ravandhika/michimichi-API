@@ -3,9 +3,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ModelMahasiswa extends Model
+class InventoriModel extends Model
 {
-    protected $table = 'inventory';
+    protected $table = 'inventori';
     protected $fillable = ['barang',
                           'deskripsi_barang',
                           'tipe',

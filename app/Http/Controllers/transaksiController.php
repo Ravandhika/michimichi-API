@@ -1,10 +1,11 @@
 <?php
+
 namespace App\Http\Controllers;
 
-use App\transaksiModel;
+use App\TransaksiModel;
 use Illuminate\Http\Request;
 
-class transaksiController extends Controller
+class TransaksiController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -17,50 +18,50 @@ class transaksiController extends Controller
     }
 
     public function getall(){
-        $transaksi = transaksiModel::all();
+        $data = TransaksiModel::all();
         return response($data);
     }
     public function getbyid($id){
-        $transaksi = transaksiModel::where('id',$id)->get();
-        return response ($transaksi);
+        $data = TransaksiModel::where('id',$id)->get();
+        return response ($data);
     }
     public function save(Request $request){
-        $transaksi = new transaksiModel();
-        $transaksi->nama = $request->input('nama');
-        $transaksi->alamat = $request->input('alamat');
-        $transaksi->kurir = $request->input('kurir');
-        $transaksi->kota = $request->input('kota');
-        $transaksi->Kecamatan = $request->input('kecamatan');
-        $transaksi->kode_pos = $request->input('kode_pos');
-        $transaksi->no_tlp = $request->input('no_tlp');
-        $transaksi->email = $request->input('email');
-        $transaksi->barang = $request->input('barang');
-        $transaksi->status = $request->input('status');
+        $data = new transaksiModel();
+        $data->nama = $request->input('nama');
+        $data->alamat = $request->input('alamat');
+        $data->kurir = $request->input('kurir');
+        $data->kota = $request->input('kota');
+        $data->Kecamatan = $request->input('kecamatan');
+        $data->kode_pos = $request->input('kode_pos');
+        $data->no_tlp = $request->input('no_tlp');
+        $data->email = $request->input('email');
+        $data->barang = $request->input('barang');
+        $data->status = $request->input('status');
 
-        $transaksi->save();
+        $data->save();
     
         return response('Berhasil Menambah Data');
     }
     public function update(Request $request, $id){
-        $transaksi = transaksiModel::where('id',$id)->first();
-        $transaksi->nama = $request->input('nama');
-        $transaksi->alamat = $request->input('alamat');
-        $transaksi->kurir = $request->input('kurir');
-        $transaksi->kota = $request->input('kota');
-        $transaksi->Kecamatan = $request->input('kecamatan');
-        $transaksi->kode_pos = $request->input('kode_pos');
-        $transaksi->no_tlp = $request->input('no_tlp');
-        $transaksi->email = $request->input('email');
-        $transaksi->barang = $request->input('barang');
-        $transaksi->status = $request->input('status');
-        $transaksi->save();
+        $data = TransaksiModel::where('id',$id)->first();
+        $data->nama = $request->input('nama');
+        $data->alamat = $request->input('alamat');
+        $data->kurir = $request->input('kurir');
+        $data->kota = $request->input('kota');
+        $data->Kecamatan = $request->input('kecamatan');
+        $data->kode_pos = $request->input('kode_pos');
+        $data->no_tlp = $request->input('no_tlp');
+        $data->email = $request->input('email');
+        $data->barang = $request->input('barang');
+        $data->status = $request->input('status');
+        $data->save();
     
         return response('Berhasil Merubah Data');
     }
     
     public function delete($id){
-        $transaksi = transaksiModel::where('id',$id)->first();
-        $transaksi->delete();
+        $data = TransaksiModel::where('id',$id)->first();
+        $data->delete();
     
         return response('Berhasil Menghapus Data');
     }

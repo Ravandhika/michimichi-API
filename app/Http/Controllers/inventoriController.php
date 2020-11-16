@@ -1,10 +1,11 @@
 <?php
+
 namespace App\Http\Controllers;
 
-use App\inventoriModel;
+use App\InventoriModel;
 use Illuminate\Http\Request;
 
-class inventoriController extends Controller
+class InventoriController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -17,42 +18,42 @@ class inventoriController extends Controller
     }
 
     public function getall(){
-        $inventori = inventoriModel::all();
+        $data = InventoriModel::all();
         return response($data);
     }
     public function getbyid($id){
-        $inventori = inventoriModel::where('id',$id)->get();
-        return response ($inventori);
+        $data = InventoriModel::where('id',$id)->get();
+        return response ($data);
     }
     public function save(Request $request){
-        $inventori = new inventoriModel();
-        $inventori->barang = $request->input('barang');
-        $inventori->deskripsi_barang = $request->input('deskripsi_barang');
-        $inventori->tipe = $request->input('tipe');
-        $inventori->gender = $request->input('gender');
-        $inventori->harga = $request->input('harga');
-        $inventori->gambar = $request->input('gambar');
-
-        $inventori->save();
+        $data = new InventoriModel();
+        
+        $data->barang = $request->input('barang');
+        $data->deskripsi_barang = $request->input('deskripsi_barang');
+        $data->tipe = $request->input('tipe');
+        $data->gender = $request->input('gender');
+        $data->harga = $request->input('harga');
+        $data->gambar = $request->input('gambar');
+        $data->save();
     
         return response('Berhasil Menambah Data');
     }
     public function update(Request $request, $id){
-        $inventori = new inventoriModel();
-        $inventori->barang = $request->input('barang');
-        $inventori->deskripsi_barang = $request->input('deskripsi_barang');
-        $inventori->tipe = $request->input('tipe');
-        $inventori->gender = $request->input('gender');
-        $inventori->harga = $request->input('harga');
-        $inventori->gambar = $request->input('gambar');
-        $inventori->save();
+        $data = InventoriModel::where('id',$id)->first();
+        $data->barang = $request->input('barang');
+        $data->deskripsi_barang = $request->input('deskripsi_barang');
+        $data->tipe = $request->input('tipe');
+        $data->gender = $request->input('gender');
+        $data->harga = $request->input('harga');
+        $data->gambar = $request->input('gambar');
+        $data->save();
     
         return response('Berhasil Merubah Data');
     }
     
     public function delete($id){
-        $inventori = inventoriModel::where('id',$id)->first();
-        $inventori->delete();
+        $data = InventoriModel::where('id',$id)->first();
+        $data->delete();
     
         return response('Berhasil Menghapus Data');
     }
